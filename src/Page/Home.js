@@ -66,7 +66,7 @@ const Home = () => {
             whileTap={{ scale: 0.95 }}
             onClick={() => navigate("/contact")}
           >
-            Get Started
+            Get welcome
           </motion.button>
         </motion.div>
 
