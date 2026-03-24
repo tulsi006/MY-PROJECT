@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -44,8 +43,7 @@ const services = [
   },
   {
     title: "IT Consulting & Support",
-    description:
-      "Expert IT strategy and 24/7 support.",
+    description: "Expert IT strategy and 24/7 support.",
     points: [
       "IT consulting",
       "24/7 monitoring",
@@ -85,11 +83,15 @@ const services = [
 
 const Services = () => {
   const [expandedIndex, setExpandedIndex] = useState(null);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState(0);
 
   useEffect(() => {
+    // Set initial width safely
+    setWindowWidth(window.innerWidth);
+
     const handleResize = () => setWindowWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
+
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
@@ -97,7 +99,7 @@ const Services = () => {
     setExpandedIndex(expandedIndex === index ? null : index);
   };
 
-  // Container stagger animation
+  // Container animation
   const containerVariants = {
     hidden: {},
     show: {
@@ -121,7 +123,12 @@ const Services = () => {
   // List item animation
   const listItemVariants = {
     hidden: { opacity: 0, x: -20, filter: "blur(4px)" },
-    visible: { opacity: 1, x: 0, filter: "blur(0px)", transition: { type: "spring", stiffness: 120, damping: 12 } },
+    visible: {
+      opacity: 1,
+      x: 0,
+      filter: "blur(0px)",
+      transition: { type: "spring", stiffness: 120, damping: 12 },
+    },
   };
 
   return (
@@ -132,7 +139,9 @@ const Services = () => {
         background: "#f8fafc",
       }}
     >
-      <h2 style={{ fontSize: "36px", marginBottom: "10px" }}>Our Services</h2>
+      <h2 style={{ fontSize: "36px", marginBottom: "10px" }}>
+        Our Services
+      </h2>
       <p style={{ marginBottom: "40px", color: "#475569" }}>
         We provide end-to-end IT solutions to help your business grow.
       </p>
@@ -164,13 +173,19 @@ const Services = () => {
             <motion.img
               src={service.image}
               alt={service.title}
-              style={{ width: "100%", height: "180px", objectFit: "cover" }}
+              style={{
+                width: "100%",
+                height: "180px",
+                objectFit: "cover",
+              }}
               whileHover={{ scale: 1.1 }}
             />
 
             <div style={{ padding: "15px", textAlign: "left" }}>
               <h3>{service.title}</h3>
-              <p style={{ color: "#475569" }}>{service.description}</p>
+              <p style={{ color: "#475569" }}>
+                {service.description}
+              </p>
 
               <motion.button
                 onClick={() => toggleCard(index)}
@@ -185,7 +200,9 @@ const Services = () => {
                   cursor: "pointer",
                 }}
               >
-                {expandedIndex === index ? "Hide Details" : "View Details"}
+                {expandedIndex === index
+                  ? "Hide Details"
+                  : "View Details"}
               </motion.button>
 
               <AnimatePresence>
@@ -194,7 +211,11 @@ const Services = () => {
                     initial="hidden"
                     animate="visible"
                     exit="hidden"
-                    style={{ marginTop: "10px", paddingLeft: "18px", color: "#334155" }}
+                    style={{
+                      marginTop: "10px",
+                      paddingLeft: "18px",
+                      color: "#334155",
+                    }}
                   >
                     {service.points.map((point, i) => (
                       <motion.li
