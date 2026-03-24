@@ -80,7 +80,7 @@ const About = () => {
           marginTop: "40px",
         }}
       >
-        Why Choose Techstrota
+        Why Choose our Techstrota
       </motion.h2>
 
       {/* Why Choose Us Section */}
