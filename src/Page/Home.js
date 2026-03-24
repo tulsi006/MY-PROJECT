@@ -55,7 +55,7 @@ const Home = () => {
       <motion.div style={styles.container} variants={containerVariants} initial="hidden" animate="visible">
         {/* Text */}
         <motion.div style={styles.text} variants={textVariant}>
-          <h1 style={styles.heading}>Welcome to Techstrotawebsite</h1>
+          <h1 style={styles.heading}>Welcome  to my Techstrotawebsite</h1>
           <p style={styles.paragraph}>
             We create modern, responsive, and scalable web solutions for your business.
           </p>
